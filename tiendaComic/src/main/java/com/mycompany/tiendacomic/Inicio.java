@@ -17,6 +17,7 @@ public class Inicio extends JFrame {
     private JPanel pnInicio; //Panel de inicio
     private JButton bttAbrirCargaMasiva; //Boton para abrir el formulario
     private JButton bttMostrarComics; //Boton para abrir el formulario
+    private JButton bttGenerarReporteComic; //Boton para abrir el formulario
     private CargaMasiva formCarga; //Ventana creada a partir de la clase Formulario
     private TablaComics fmTabla; //
 
@@ -26,6 +27,7 @@ public class Inicio extends JFrame {
        construirPanelInicio();
        construirBotonAbrir();
        construirBotonMostrar();
+       construirBotonReporteComic();
 
        //Creación de objeto formulario
        formCarga = new CargaMasiva(); 
@@ -52,7 +54,7 @@ public class Inicio extends JFrame {
     private void construirBotonAbrir() {
        //Creación y configuración de JButton Abrir Carga masiva
        bttAbrirCargaMasiva = new JButton("Abrir Carga Masiva"); 
-       bttAbrirCargaMasiva.setBounds(175, 75, 150, 30);
+       bttAbrirCargaMasiva.setBounds(175, 50, 150, 30);
        bttAbrirCargaMasiva.addActionListener( new ActionListener(){ //Implementación alternativa de ActionListener
          @Override
          public void actionPerformed(ActionEvent e) { 
@@ -66,7 +68,7 @@ public class Inicio extends JFrame {
     private void construirBotonMostrar() {
       //Creación y configuración de JButton
        bttMostrarComics = new JButton("Mostrar Comics"); 
-       bttMostrarComics.setBounds(175, 175, 150, 30);
+       bttMostrarComics.setBounds(175, 150, 150, 30);
        bttMostrarComics.addActionListener( new ActionListener(){ //Implementación alternativa de ActionListener
          @Override
          public void actionPerformed(ActionEvent e) { 
@@ -81,5 +83,26 @@ public class Inicio extends JFrame {
         }
        });
        pnInicio.add(bttMostrarComics); 
+    }
+
+
+    private void construirBotonReporteComic() {
+      //Creación y configuración de JButton generar Reporte
+       bttGenerarReporteComic = new JButton("Reporte Comics"); 
+       bttGenerarReporteComic.setBounds(175, 250, 150, 30);
+       bttGenerarReporteComic.addActionListener( new ActionListener(){ //Implementación alternativa de ActionListener
+         @Override
+         public void actionPerformed(ActionEvent e) { 
+
+            //Columnas y filas de la tabla
+            String columnas[] = { "Autor", "Titulo", "Publicacion", "Descripcion", "Generos", "Copias", "Existencia"}; //Listado de columnas/encabezados de la tabla HTML
+            Comic datos[] = Tienda.getAlmacenComics(); //Llamada al método estático para obtener el arreglo de comics
+
+            ReporteComic generadorHtml = new ReporteComic(datos, columnas); //Crear objeto Generador Html
+            String reporteHtml = generadorHtml.obtenerReporteComics(); //Obtener cadena de carácteres con la información en formato HTML
+            System.out.println(reporteHtml); //Impresión en consola
+        }
+       });
+       pnInicio.add(bttGenerarReporteComic); 
     }
 }

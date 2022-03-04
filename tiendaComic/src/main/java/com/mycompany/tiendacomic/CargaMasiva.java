@@ -75,7 +75,7 @@ public class CargaMasiva extends JFrame {
 
     /*
      * El método cargarComics proporciona obtiene un texto del área de texto y lo separa en subcadenas
-     * Las subcadenas son utilizadas para ubicar colocar los valores iniciales de ciertos objetos Comic
+     * Las subcadenas son utilizadas para colocar los valores iniciales de ciertos objetos Comic
      * Los carácteres de escape son una forma alternativa de nombrar ciertos caracteres, como saltos de linea, tabulaciones, etc.
      * No se separarán los géneros en esta parte, eso se ha implementado en la Clase Comic
     */
